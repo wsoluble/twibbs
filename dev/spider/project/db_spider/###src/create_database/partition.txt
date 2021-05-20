@@ -1,0 +1,109 @@
+CREATE SERVER master FOREIGN DATA WRAPPER mysql OPTIONS (HOST "moc.local", PORT 3306, USER "twibbs_master", PASSWORD "kusang");
+CREATE SERVER master FOREIGN DATA WRAPPER mysql OPTIONS (HOST "127.0.0.1", PORT 3306, USER "twibbs_master", PASSWORD "kusang");
+CREATE SERVER master FOREIGN DATA WRAPPER mysql OPTIONS (HOST "127.0.0.1", PORT 3306, USER "root", PASSWORD "kusang");
+
+ALTER TABLE spider_twibbs.site_sessions COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_session", table "site_sessions"';
+
+ALTER TABLE spider_twibbs.category COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "category"';
+ALTER TABLE spider_twibbs.tag COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "tag"';
+ALTER TABLE spider_twibbs.report_type COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "report_type"';
+ALTER TABLE spider_twibbs.site COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "site"';
+ALTER TABLE spider_twibbs.site_ng_ip COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "site_ng_ip"';
+ALTER TABLE spider_twibbs.site_ng_user COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "site_ng_user"';
+ALTER TABLE spider_twibbs.site_ng_word COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "site_ng_word"';
+ALTER TABLE spider_twibbs.site_infomation COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "site_infomation"';
+ALTER TABLE spider_twibbs.site_various COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "site_various"';
+ALTER TABLE spider_twibbs.user_key COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_user", table "user_key"';
+ALTER TABLE spider_twibbs.user_tw COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_user", table "user_tw"';
+ALTER TABLE spider_twibbs.guest_comment_report COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "guest_comment_report"';
+ALTER TABLE spider_twibbs.guest_thread_report COMMENT 'wrapper "mysql", srv "master", database "master_twibbs_site", table "guest_thread_report"';
+
+ALTER TABLE spider_twibbs.thread COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread PARTITION BY RANGE (thread_id) (
+PARTITION p_thread_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_thread", table "thread_0001"',
+PARTITION p_thread_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread", table "thread_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_favorite COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_favorite PARTITION BY RANGE (thread_favorite_id) (
+PARTITION p_thread_favorite_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_thread_favorite", table "thread_favorite_0001"',
+PARTITION p_thread_favorite_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_favorite", table "thread_favorite_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_favorite_user COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_favorite_user PARTITION BY RANGE (tfu_user_id) (
+PARTITION p_thread_favorite_user_0001 VALUES LESS THAN (1000000) COMMENT 'srv "master", database "master_twibbs_thread_favorite", table "thread_favorite_user_0001"',
+PARTITION p_thread_favorite_user_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_favorite", table "thread_favorite_user_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_favorite_thread COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_favorite_thread PARTITION BY RANGE (tft_thread_id) (
+PARTITION p_thread_favorite_thread_0001 VALUES LESS THAN (1000000) COMMENT 'srv "master", database "master_twibbs_thread_favorite", table "thread_favorite_thread_0001"',
+PARTITION p_thread_favorite_thread_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_favorite", table "thread_favorite_thread_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_report COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_report PARTITION BY RANGE (thread_report_id) (
+PARTITION p_thread_report_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_thread_report", table "thread_report_0001"',
+PARTITION p_thread_report_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_report", table "thread_report_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_report_user COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_report_user PARTITION BY RANGE (tru_user_id) (
+PARTITION p_thread_report_user_0001 VALUES LESS THAN (1000000) COMMENT 'srv "master", database "master_twibbs_thread_report", table "thread_report_user_0001"',
+PARTITION p_thread_report_user_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_report", table "thread_report_user_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_report_thread COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_report_thread PARTITION BY RANGE (trt_thread_id) (
+PARTITION p_thread_report_thread_0001 VALUES LESS THAN (1000000) COMMENT 'srv "master", database "master_twibbs_thread_report", table "thread_report_thread_0001"',
+PARTITION p_thread_report_thread_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_report", table "thread_report_thread_0002"'
+);
+
+ALTER TABLE spider_twibbs.thread_tag COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.thread_tag PARTITION BY RANGE (tt_thread_id) (
+PARTITION p_thread_tag_0001 VALUES LESS THAN (10000000) COMMENT 'srv "master", database "master_twibbs_thread_tag", table "thread_tag_0001"',
+PARTITION p_thread_tag_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_thread_tag", table "thread_tag_0002"'
+);
+
+ALTER TABLE spider_twibbs.comment COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.comment PARTITION BY RANGE (comment_id) (
+PARTITION p_comment_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_comment", table "comment_0001"',
+PARTITION p_comment_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_comment", table "comment_0002"'
+);
+
+ALTER TABLE spider_twibbs.comment_report COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.comment_report PARTITION BY RANGE (comment_report_id) (
+PARTITION p_comment_report_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_comment_report", table "comment_report_0001"',
+PARTITION p_comment_report_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_comment_report", table "comment_report_0002"'
+);
+
+ALTER TABLE spider_twibbs.comment_report_user COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.comment_report_user PARTITION BY RANGE (cru_user_id) (
+PARTITION p_comment_report_user_0001 VALUES LESS THAN (1000000) COMMENT 'srv "master", database "master_twibbs_comment_report", table "comment_report_user_0001"',
+PARTITION p_comment_report_user_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_comment_report", table "comment_report_user_0002"'
+);
+
+ALTER TABLE spider_twibbs.comment_report_comment COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.comment_report_comment PARTITION BY RANGE (crc_comment_id) (
+PARTITION p_comment_report_comment_0001 VALUES LESS THAN (100000000) COMMENT='srv "master", database "master_twibbs_comment_report", table "comment_report_comment_0001"',
+PARTITION p_comment_report_comment_max VALUES LESS THAN MAXVALUE COMMENT='srv "master", database "master_twibbs_comment_report", table "comment_report_comment_0002"'
+);
+
+ALTER TABLE spider_twibbs.user COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.user PARTITION BY RANGE (user_id) (
+PARTITION p_user_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_user", table "user_0001"',
+PARTITION p_user_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_user", table "user_0002"'
+);
+
+ALTER TABLE spider_twibbs.user_ng COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.user_ng PARTITION BY RANGE (un_user_id) (
+PARTITION p_user_ng_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_user_ng", table "user_ng_0001"',
+PARTITION p_user_ng_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_user_ng", table "user_ng_0002"'
+);
+
+ALTER TABLE spider_twibbs.user_ng_word COMMENT 'wrapper "mysql"';
+ALTER TABLE spider_twibbs.user_ng_word PARTITION BY RANGE (unw_user_id) (
+PARTITION p_user_ng_word_0001 VALUES LESS THAN (100000000) COMMENT 'srv "master", database "master_twibbs_user_ng", table "user_ng_word_0001"',
+PARTITION p_user_ng_word_max VALUES LESS THAN MAXVALUE COMMENT 'srv "master", database "master_twibbs_user_ng", table "user_ng_word_0002"'
+);

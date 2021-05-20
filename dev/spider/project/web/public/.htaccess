@@ -1,0 +1,43 @@
+# Order allow,deny
+# Allow from localhost
+# Allow from 10.0.1.3
+# Allow from 10.0.1.6
+# Allow from 10.0.1.4
+
+RewriteEngine On
+# RewriteBase /
+# common
+#RewriteRule ^404$ index.php?c=my_error&m=e404 [END]
+
+# login
+#RewriteRule ^login$ index.php?c=login [QSA,END]
+#RewriteRule ^login/callback$ index.php?c=login&m=callback [QSA,END]
+#RewriteRule ^logout$ index.php?c=logout [END]
+
+# entry
+#RewriteRule ^entry/([a-zA-Z0-9_]+)/(before|after)/([0-9]+)$ index.php?c=entry&m=get&cat=$1&td=$2&base=$3 [END]
+#RewriteRule ^entry/([a-zA-Z0-9_]+)$ index.php?c=entry&m=get&cat=$1 [END]
+#RewriteRule ^entry/(before|after)/([0-9]+)$ index.php?c=entry&m=get&td=$1&base=$2 [END]
+#RewriteRule ^entry$ index.php?c=entry&m=get [END]
+
+# thread
+#RewriteRule ^t/([0-9]+)/(before|after)/([0-9]+)$ index.php?c=thread&m=get&thread_id=$1&td=$2&base=$3 [END]
+#RewriteRule ^t/([0-9]+)$ index.php?c=thread&m=get&thread_id=$1 [END]
+#RewriteRule ^ajax/res$ index.php?c=thread&m=res [END]
+#RewriteRule ^ajax/bookmark/(add|remove)$ index.php?c=thread&m=bookmark&method=$1 [END]
+
+# user
+#RewriteRule ^u/([a-zA-Z0-9_]{1,15})/(before|after)/([0-9]+)$ index.php?c=user&m=get&twitter_id=$1&td=$2&base=$3 [END]
+#RewriteRule ^u/([a-zA-Z0-9_]{1,15})$ index.php?c=user&m=get&twitter_id=$1 [END]
+#RewriteRule ^u/([a-zA-Z0-9_]{1,15})/thread/(before|after)/([0-9]+)$ index.php?c=user&m=get&twitter_id=$1&method=thread&td=$2&base=$3 [END]
+#RewriteRule ^u/([a-zA-Z0-9_]{1,15})/thread$ index.php?c=user&m=get&twitter_id=$1&method=thread [END]
+#RewriteRule ^u/([a-zA-Z0-9_]{1,15})/bookmark/(before|after)/([0-9]+)$ index.php?c=user&m=get&twitter_id=$1&method=bookmark&td=$2&base=$3 [END]
+#RewriteRule ^u/([a-zA-Z0-9_]{1,15})/bookmark$ index.php?c=user&m=get&twitter_id=$1&method=bookmark [END]
+
+#RewriteRule ^$ index.php [END]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+#RewriteRule ^(.*)$ index.php?$1 [END]
+#RewriteRule ^(.*)$ index.php?c=my_error&m=e404 [END]

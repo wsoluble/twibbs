@@ -1,0 +1,6 @@
+/Applications/MAMP/Library/bin/mysql -u root -p
+use twibbs;
+source /Users/twidev/Documents/twibbsdoc/stored_procedures/twibbs_procedures.sql
+source /Users/twidev/Documents/twibbsdoc/stored_procedures/twibbs_procedures_site.sql
+source /Users/twidev/Documents/twibbsdoc/stored_procedures/twibbs_triggers.sql
+source /Users/twidev/Documents/twibbsdoc/stored_procedures/twibbs_triggers_site.sql
