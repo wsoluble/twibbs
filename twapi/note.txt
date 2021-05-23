@@ -1,0 +1,4 @@
+twitteroauthについて
+
+・最新版ではComposerによるインストールが必須
+・旧版では apt php-curl が必要

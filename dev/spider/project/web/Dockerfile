@@ -1,4 +1,5 @@
-FROM php:8.0.3-apache AS img-php
+# FROM php:7.3-apache AS img-php (/login/callbackにてセッションクッキーが取得できない不具合)
+FROM php:5.6-apache AS img-php
 
 SHELL ["/bin/bash", "-c"]
 

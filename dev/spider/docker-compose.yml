@@ -10,7 +10,8 @@ services:
     restart: always
     hostname: ${MYSQL_HOST_NAME_MASTER}
     networks:
-      - dapp_ns
+      dapp_ns:
+        ipv4_address: 172.16.238.2
     environment:
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -45,7 +46,8 @@ services:
     restart: always
     hostname: ${MYSQL_HOST_NAME_SPIDER}
     networks:
-      - dapp_ns
+      dapp_ns:
+        ipv4_address: 172.16.238.3
     environment:
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -87,10 +89,12 @@ services:
     restart: always
     hostname: web-server
     networks:
-      - dapp_ns
+      dapp_ns:
+        ipv4_address: ${WEB_HOST_ADDR}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_HOST_NAME_SPIDER: ${MYSQL_HOST_NAME_SPIDER}
+      WEB_HOST_ADDR: ${WEB_HOST_ADDR}
     ports:
       - 9080:80
     volumes:
@@ -117,7 +121,8 @@ services:
     image: 'phpmyadmin:5.1.0'
     restart: always
     networks:
-      - dapp_ns
+      dapp_ns:
+        ipv4_address: 172.16.238.5
     ports:
       - 9081:80
     environment:
@@ -129,3 +134,8 @@ services:
 networks:
   dapp_ns:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1

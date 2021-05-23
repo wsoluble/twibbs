@@ -12,7 +12,16 @@ class Lib_base {
 	 */
 	public function __construct() {
 		$this->ci = &get_instance();
-		$this->common = new SiteCommon();
+		// $this->common = new SiteCommon();
+		$this->ci->load->database();
+		if (!empty($_COOKIE)) {
+			$sess_name = $this->ci->config->item('sess_cookie_name');
+			$sess_id = empty($_COOKIE[$sess_name]) ? null : $_COOKIE[$sess_name];
+			if (!empty($sess_id)) {
+				// セッションクッキーが存在する場合はセッション読み込み
+				$this->ci->load->library('session');
+			}
+		}
 	}
 	/**
 	 * 広告を取得

@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:9080';
+$config['base_url'] = 'http://' . $_ENV['WEB_HOST_ADDR'];
 
 /*
 |--------------------------------------------------------------------------
@@ -369,11 +369,11 @@ $config['encryption_key'] = '';
 */
 $config['sess_driver'] = 'database';
 $config['sess_cookie_name'] = 'sess';
-$config['sess_expiration'] = 0; // ブラウザ閉じるまで
+$config['sess_expiration'] = 604800;
 //$config['sess_save_path'] = APPPATH . '../sessions/';
 $config['sess_save_path'] = 'site_sessions';
 $config['sess_match_ip'] = FALSE;
-$config['sess_time_to_update'] = 300;
+$config['sess_time_to_update'] = 0;
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*
@@ -395,7 +395,7 @@ $config['cookie_prefix']	= '';
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_httponly'] 	= TRUE;
 
 /*
 |--------------------------------------------------------------------------

@@ -11,6 +11,7 @@ class Login extends CI_Controller {
 	public function index() {
 		// 読み込み
 		require_once APPPATH . '../twitteroauth/autoload.php';
+		// $this->load->database();
 		$this->load->library('session');
 		$this->load->helper('url');
 
@@ -24,7 +25,7 @@ class Login extends CI_Controller {
 				$_SESSION['redirect'] = $_SERVER['HTTP_REFERER'];
 			}
 		}
-		$this->session->mark_as_flash('redirect');
+		// $this->session->mark_as_flash('redirect');
 
 		// 認証画面へ
 		try {
@@ -38,6 +39,7 @@ class Login extends CI_Controller {
 			echo '<p>' . $e->getMessage() . '</p>';
 			exit();
 		}
+
 		header('location:' . $url);
 		exit();
 	}
@@ -48,6 +50,7 @@ class Login extends CI_Controller {
 	public function callback() {
 		// 読み込み
 		require_once APPPATH . '../twitteroauth/autoload.php';
+		// $this->load->database();
 		$this->load->library('session');
 		$this->load->helper('url');
 		$this->load->library('lib_user');
@@ -100,6 +103,7 @@ class Login extends CI_Controller {
 			// var_dump($user_id);
 		}
 		header('location:' . $_SESSION['redirect']);
+		unset($_SESSION['redirect']);
 		exit();
 	}
 
