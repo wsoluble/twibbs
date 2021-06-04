@@ -1,0 +1,224 @@
+/**
+ * 一覧画面
+ */
+
+.admin-threads-header {
+	position: relative;
+	padding: 20px;
+	color: #4b666e;
+	font-size: 1.4rem;
+}
+
+.admin-threads-header h1 {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 2.0rem;
+	color: #4b666e;
+}
+
+.admin-threads-header nav {
+	margin: 40px 0 0 0;
+}
+
+.admin-threads-header nav ul {
+}
+
+.admin-threads-header nav li {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.admin-threads-header nav li a {
+	display: block;
+	padding: 5px 20px;
+	border: 1px solid #4fa9c6;
+	border-radius: 5px;
+	background-color: #fff;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+
+.admin-threads-header nav li.current a {
+	background-color: #4fa9c6;
+	color: #fff;
+}
+
+.create-admin-thread {
+	margin: 20px 0;
+}
+
+.create-admin-thread a {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 10px 20px;
+	font-size: 1.4rem;
+	color: #fff;
+	text-decoration: none;
+	background-color:#46a8c7;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	cursor: pointer;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.create-admin-thread a:hover {
+	background-color:#1198c3;
+}
+
+.create-admin-thread a i {
+	margin-right: 5px;
+}
+
+.pagination-summary {
+	margin: 0 20px;
+}
+
+/**
+ * 編集画面
+ */
+.date-group,
+.user-group,
+.status-group {
+	position: relative;
+	margin: 20px 0;
+	font-size: 1.4rem;
+	color: #4b5a6e;
+}
+
+.user-group > * {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 1.4rem;
+	margin-right: 10px;
+}
+
+.date-group label {
+	font-size: 1.4rem;
+	color: #4b5a6e;
+}
+
+.date-group input {
+	padding: 5px 10px;
+	border: 1px solid #6bb5cc;
+	border-radius: 5px;
+	background-color: #fff;
+	color: #333;
+	font-size:1.6rem;
+	line-height:1.5em;
+	outline: none;
+}
+
+.user-group select,
+.select-user select {
+	appearance: menulist;
+	-moz-appearance: menulist;
+	-webkit-appearance: menulist;
+	height: 36px;
+	font-size: 1.4rem;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #bddee8;
+}
+
+.status-group label {
+	margin-right: 20px;
+	font-size: 1.4rem;
+	color: #666;
+}
+
+.select-user select {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.post-comment-form .header {
+	margin-bottom: 10px;
+}
+
+.rel-hour,
+.rel-min,
+.rel-sec {
+	font-size: 1.2rem !important;
+	color: #666;
+}
+
+.rel-hour input,
+.rel-min input,
+.rel-sec input {
+	width: 40px;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0 5px;
+	border: 1px solid #4fa9c6;
+	border-radius: 5px;
+	font-size: 1.4rem;
+	color: #666;
+	background-color: #fff;
+}
+
+.comment-form-area {
+	margin: 0 0 30px 0;
+}
+
+.post-comment-form {
+	position:relative;
+	margin: 0;
+	padding: 15px;
+	border-radius: 0;
+	background-color:#8acde2;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+
+.post-body textarea {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #6bb5cc;
+	border-radius: 5px;
+	background-color: #fff;
+	font-size:1.6rem;
+	line-height:1.5em;
+	outline: none;
+}
+
+.admin-comment-post {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 10px 15px;
+	font-size: 1.4rem;
+	color: #fff;
+	background-color:#46a8c7;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	cursor: pointer;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.admin-comment-post:hover {
+	background-color:#1198c3;
+}
+
+.admin-thread-delete {
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding: 5px 10px;
+	font-size: 1.2rem;
+	color: #fff;
+	background-color:#d43939;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	cursor: pointer;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}

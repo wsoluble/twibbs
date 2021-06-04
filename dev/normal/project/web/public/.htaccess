@@ -1,0 +1,18 @@
+php_value date.timezone Asia/Tokyo
+php_value intl.default_locale ja_JP.UTF-8
+Options -Indexes
+
+# AuthType Basic
+# AuthName "input user and password."
+# AuthUserFile /home/tldqleyq/webapps/.htpasswd
+# require valid-user
+
+RewriteEngine On
+RewriteBase /
+
+#RewriteCond %{HTTP_HOST} ^www\.textopia\.net$
+#RewriteRule ^(.*)$ http://textopia.net/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?$1 [L]
