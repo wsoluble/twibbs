@@ -16,6 +16,7 @@ services:
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      TZ: ${TZ}
     volumes:
       - type: bind
         source: ./project/db/initdb
@@ -55,6 +56,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
       WEB_HOST_ADDR: ${WEB_HOST_ADDR}
+      TZ: ${TZ}
     ports:
       - 9080:80
     volumes:
@@ -73,8 +75,80 @@ services:
         target: /var/log/apache2
         volume:
           nocopy: true
+      - type: bind
+        source: ./project/volumes/web/app/twitteroauth
+        target: /var/www/app/twitteroauth
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/app/site.php
+        target: /var/www/app/site.php
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/public/rss
+        target: /var/www/public/rss
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/public/sitemap.xml
+        target: /var/www/public/sitemap.xml
+        volume:
+          nocopy: true
     depends_on:
       - db
+
+  cron:
+    container_name: 'cron'
+    build:
+      context: ./project/cron
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      dapp_ns:
+        ipv4_address: 172.16.238.6
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_HOST_NAME: ${MYSQL_HOST_NAME}
+      TZ: ${TZ}
+    volumes:
+      - type: bind
+        source: ./project/cron/cron.d/cron.txt
+        target: /etc/crontab
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/cron/script
+        target: /cron_script
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./logs/cron
+        target: /var/log/cron
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/public/rss
+        target: /output/rss
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/public/sitemap.xml
+        target: /output/sitemap.xml
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/app/twitteroauth
+        target: /cron_script/lib/twitteroauth
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./project/volumes/web/app/site.php
+        target: /cron_script/lib/site.php
+        volume:
+          nocopy: true
+    depends_on:
+      - web
 
   phpmyadmin:
     container_name: 'phpmyadmin'
@@ -89,7 +163,7 @@ services:
       - PMA_HOSTS=${MYSQL_HOST_NAME}
       - PMA_ARBITRARY=-1
     depends_on:
-      - web
+      - cron
 
 networks:
   dapp_ns:

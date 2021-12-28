@@ -1,7 +1,4 @@
 <?php
-mb_language('Japanese');
-mb_internal_encoding('UTF-8');
-date_default_timezone_set('Asia/Tokyo');
 
 /**
  * Admin Account
@@ -13,13 +10,19 @@ define('SITE_TWITTER_ID', 'w_soluble_dev');
  * site parameters
  */
 define('SITE_NAME', 'twibbs');
-define('SITE_SUBTITLE', 'for Twitterer');
+define('SITE_SUBTITLE', '自由にスレッドが立てられるシンプルな掲示板');
 define('THREAD_CONTENT_MAX', 20);
 define('THREAD_COMMENT_MAX', 100);
 define('COMMENT_CONTENT_MAX', 20);
 define('SPAM_REPORT_MAX', 100);
 define('PAGINATION_SEGMENTS', 2);
 define('DELETED_NAME', '_(ˇωˇ」∠)_ ｽﾔｧ…');
+
+/**
+ * tweet
+ */
+define('TWEET_BODY_MAX', 135);
+define('TWEET_THREAD_URL', 'http://example.com/t/');
 
 /**
  * Adv
@@ -39,6 +42,7 @@ define('NG_USER_MAX', 500);
 define('TERM_URL', '/term');
 define('HELP_URL', '/help');
 define('RULE_URL', '/rule');
+define('REQ_URL', '/req');
 
 /**
  * Thread
@@ -52,7 +56,7 @@ define('POST_THREAD_INTERVAL', 1800);
  */
 define('COMMENT_LENGTH', 2000);
 define('SEQ_NEW_LINE_MAX', 5);	// 連続改行
-define('POST_COMMENT_INTERVAL', 30);
+define('POST_COMMENT_INTERVAL', 10);
 define('POST_COMMENT_FILLED_REDIRECT_SEC', 5);
 
 /**
@@ -79,12 +83,7 @@ define('WEBMASTER_ACCESS_TOKEN_SECRET', 'dFbdih1pCwHimTDNYD1kEPa6SXX7QAvWQXjObWY
 /**
  * DATABASE
  */
-# define('DB_USER', 'twibbs_master');
-# define('DB_PASS', 'meteor');
-
-define('SPIDER_DB', 'spider_twibbs');
-# define('SESSION_DB', 'twibbs_session');
-# define('SITE_DB', 'twibbs_site');
+define('SPIDER_DB', 'twibbs');
 
 /**
  * 共通処理

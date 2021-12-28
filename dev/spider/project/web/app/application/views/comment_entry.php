@@ -19,7 +19,7 @@ if (!empty($after_url)) {
 <?php
 	$now = new stdClass;
 	$now->ts = time();
-	$now->year = date('y', $now->ts);
+	$now->year = date('Y', $now->ts);
 	$now->month = date('n', $now->ts);
 	$now->day = date('j', $now->ts);
 	$now->hour = date('G', $now->ts);
@@ -28,7 +28,7 @@ if (!empty($after_url)) {
 		$c_date = '';
 		$date = new stdClass;
 		$date->ts = strtotime($comment->c_datetime);
-		$date->year = date('y', $date->ts);
+		$date->year = date('Y', $date->ts);
 		$date->month = date('n', $date->ts);
 		$date->day = date('j', $date->ts);
 		$date->hour = date('G', $date->ts);

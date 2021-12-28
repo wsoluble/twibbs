@@ -7,14 +7,14 @@ if (!empty($thread)) {
 	$c_date = '';
 	$now = new stdClass;
 	$now->ts = time();
-	$now->year = date('y', $now->ts);
+	$now->year = date('Y', $now->ts);
 	$now->month = date('n', $now->ts);
 	$now->day = date('j', $now->ts);
 	$now->hour = date('G', $now->ts);
 	$now->minute = date('i', $now->ts);
 	$date = new stdClass;
 	$date->ts = strtotime($thread->t_datetime);
-	$date->year = date('y', $date->ts);
+	$date->year = date('Y', $date->ts);
 	$date->month = date('n', $date->ts);
 	$date->day = date('j', $date->ts);
 	$date->hour = date('G', $date->ts);
