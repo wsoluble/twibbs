@@ -1,6 +1,6 @@
 # 1. このプロジェクトについて
 
-このプロジェクトは、twibbsをInnoDBストレージエンジンで実装したバージョンです。Dockerコンテナとして動作するWebアプリケーションとして実装しています。
+このプロジェクトは、twibbsをspiderストレージエンジンで実装したバージョンです。Dockerコンテナとして動作するWebアプリケーションとして実装しています。
 ビルドに関する情報はdocker-compose.ymlに記述します。
 
 この文書で記述するコマンドは、Ubuntu上で実行されるものとします。
@@ -128,7 +128,7 @@ webコンテナとは、docker-compose.ymlのservicesに記述されている`we
 
 以下のディレクトリは、webコンテナの公開領域`/var/www/public`に配置します。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/public
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/web/public
 
 #### フォルダ / ファイル一覧
 
@@ -151,7 +151,7 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/public
 
 以下のディレクトリは、Codeigniterフレームワーク関連ファイルです。webコンテナ内の`/var/www/app`ディレクトリに配置します。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/app
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/web/app
 
 以下のテーブルは、Codeigniterフレームワークの中で、自らが手を加えたファイル、または自らが追加したファイルの一覧です。
 
@@ -168,7 +168,6 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/app
 |  application/controllers  |    |  MVCモデルのCにあたるコントローラーファイルを入れるフォルダ。  |
 |    |  Errors.php  |  エラー画面を表示する。<br>http://172.16.238.4/abcxyz  |
 |    |  Help.php  |  ヘルプ画面を表示する。<br>http://172.16.238.4/help  |
-|    |  Req.php  |  ご要望画面を表示する。<br>http://172.16.238.4/req  |
 |    |  Rule.php  |  ルール画面を表示する。<br>http://172.16.238.4/rule  |
 |    |  Term.php  |  利用規約画面を表示する。<br>http://172.16.238.4/term  |
 |    |  Welcome.php  |  トップページを表示する。<br>http://172.16.238.4/  |
@@ -190,8 +189,6 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/app
 |    |  Thread_report.php  |  スレッドのスパム報告を投稿する処理。ログイン必須。  |
 |    |  Thread.php  |  スレッドを投稿・削除する処理。ログイン必須。  |
 |  application/controllers/admin  |    |  管理者画面のコントローラーファイルを入れるフォルダ。管理者のみが閲覧できる領域。site.phpのADMIN_TWITTER_PRIMARY_ID定数に該当するTwitterユーザーがログインした場合のみ閲覧可能。  |
-|    |  Post.php  |  管理者スレッドの投稿画面を表示。<br>http://172.16.238.4/admin/post/thread  |
-|    |  Threads.php  |  管理者が作成したスレッドの一覧を表示。<br>http://172.16.238.4/admin/threads/get  |
 |    |  User.php  |  ユーザーが投稿したスレッド・レスへのスパム報告一覧を表示。<br>http://172.16.238.4/admin/u/w_soluble_dev/report_res<br>http://172.16.238.4/admin/u/w_soluble_dev/report_thread  |
 |  application/views  |    |  MVCモデルのVにあたるビューファイルを入れるフォルダ。<br>画面の部品を組み立てる処理。  |
 |  application/models  |    |  MVCモデルのMにあたるモデルファイルを入れるフォルダ。<br>データベースからデータを取得する処理。  |
@@ -204,7 +201,7 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/app
 
 Apache設定ファイル。webコンテナ内の`/etc/apache2/sites-available`以下に配置します。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/sites-available
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/web/sites-available
 
 #### フォルダ / ファイル一覧
 
@@ -221,7 +218,7 @@ cronコンテナとは、docker-compose.ymlのservicesに記述されている`c
 
 以下のディレクトリのファイルを、cronコンテナ内の`/cron_script`ディレクトリに配置します。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/cron/script
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/cron/script
 
 ### フォルダ / ファイル一覧
 
@@ -229,21 +226,14 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/cron/script
 | ---- | ---- | ---- |
 |    |  output_rss.php  |  RSSフィードを出力する処理。  |
 |    |  output_sitemap.php  |  サイトマップを出力する処理。  |
-|  admin  |    |  管理者用の処理を入れるフォルダ  |
-|    |  post_admin_thread.php  |  管理者が作成したスレッドを毎分確認して投稿する処理。  |
-|    |  tweet_thread.php  |  作成されたスレッドがあるか毎分確認してツイートを投稿する処理。管理者のツイッターアカウントでツイートされます。  |
 |  lib  |    |  ライブラリを入れるフォルダ  |
 |    |  dbh.php  |  データベース接続＆ハンドラ取得。  |
-|    |  site.php<span style="color: red; ">[*]</span>  |  サイト設定の定数を定義するファイル。  |
-|  lib/twitteroauth<span style="color: red; ">[*]</span>  |    |  TwitterAPIを扱うためのライブラリが入っているフォルダ。<br>https://twitteroauth.com/  |
-
-<span style="color: red; ">[*]</span> コンテナ間で共有されるファイルまたはフォルダ。volumesフォルダに実態ファイルを格納します。
 
 ### 3.2.2 crontab設定ファイル
 
 以下のファイルを、cronコンテナ内の`/etc/crontab`ファイルに上書きします。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/cron/cron.d/cron.txt
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/cron/cron.d/cron.txt
 
 
 ### フォルダ / ファイル一覧
@@ -252,31 +242,35 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/cron/cron.d/cr
 | ---- | ---- | ---- |
 |    |  cron.txt  |  cronの設定ファイル。ファイルの所有者をrootから変更してはいけません。動作しなくなります。  |
 
-## 3.3 dbコンテナのファイル
+## 3.3 db_spiderコンテナのファイル
 
-dbコンテナとは、docker-compose.ymlのservicesに記述されている`db`という名前のサービスのコンテナのことです。
+db_spiderコンテナとは、docker-compose.ymlのservicesに記述されている`db_spider`という名前のサービスのコンテナのことです。phpなどからデータベースを操作する際は、このコンテナに対してSQLを送信します。
 
 ## 3.3.1 MariaDBの設定ファイル
 
 以下のファイルをdbコンテナ内の`/etc/mysql/conf.d/my.cnf`ファイルに上書きします。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/db/conf/my.cnf
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/db_spider/conf/my.cnf
 
 ## 3.3.2 初回実行のデータインポート処理を行うファイル
 
 以下のフォルダに含まれるファイルをdbコンテナ内の`/docker-entrypoint-initdb.d`ディレクトリに配置します。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/db/initdb
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/db_spider/initdb
 
 ### フォルダ / ファイル一覧
 
 |  フォルダ[initdb/]  |  ファイル  |  説明  |
 | ---- | ---- | ---- |
-|    |  001_twibbs.sql  |  twibbsデータベースのテーブル作成、ストアドプロシージャ・トリガーを登録するSQL。  |
-|    |  002_twibbs_data.sql  |  twibbsデータベースの初期データを登録するSQL。  |
-|    |  003_twibbs_samples.sql  |  twibbs_samplesデータベースに、スレッドやコメントのサンプルテキストを登録するSQL。  |
+|    |  000_setting_spider.sql  |  spiderストレージエンジンをインストールして、マスター（db_master）への接続情報を設定する。  |
+|    |  001_spider_twibbs.sql  |  spiderテーブルを作成して、db_masterの対応するテーブルへの接続情報を設定するSQL。  |
+|    |  002_twibbs_procedures.sql  |  ストアドプロシージャを登録するSQL。  |
+|    |  003_twibbs_triggers.sql  |  トリガーを登録するSQL。  |
+|    |  004_twibbs_samples.sql  |  スレッドタイトル、レスのサンプルテキストを登録するSQL。  |
+|    |  005_insert_site.sql  |  siteテーブルのレコード登録、userテーブルに管理者を登録するSQL。  |
 |    |  004_create_db.sh  |  DBにデータを登録するphpスクリプトを実行するシェルスクリプト。phpスクリプトが実行される前に、001_twibbs.sql、002_twibbs_data.sql、003_twibbs_samples.sqlのインポート処理が終了している必要があるため、実行開始まで10秒待ちます。  |
 |  create_db  |    |  DBにデータを登録するphpスクリプトファイルを入れるフォルダ。  |
+|    |  00_RegCategory.php  |  カテゴリを登録する処理。  |
 |    |  01_RegMainTag.php  |  Noun.adjv.csv辞書ファイルに登録されている単語をタグとしてインポートします。  |
 |    |  02_RegUsers.php  |  ダミーユーザーを登録する処理。  |
 |    |  03_RegThreads.php  |  twibbs_samplesデータベースからスレッドタイトルやコメントのサンプルを取得して、スレッドやコメントをランダムに登録します。  |
@@ -286,19 +280,45 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/db/initdb
 
 `/docker-entrypoint-initdb.d`内のファイルは、コンテナをビルド・起動した際に、初回のみ実行されます。ファイルの実行順序は、ファイル名がアルファベット順となります。詳細は、[MariaDBのDockerHub](https://hub.docker.com/_/mariadb)の「Initializing a fresh instance」章を参照してください。
 
-## 3.4 volumesフォルダのファイル
+## 3.4 db_masterコンテナのファイル
+
+db_masterコンテナとは、docker-compose.ymlのservicesに記述されている`db_master`という名前のサービスのコンテナのことです。データベースのデータの実態はこのコンテナに保存されます。このコンテナのデータを直接操作することはしません。phpなどからデータを参照・更新する場合は、必ずdb_spiderに対してSQLを送信してください。
+
+## 3.4.1 MariaDBの設定ファイル
+
+以下のファイルをdbコンテナ内の`/etc/mysql/conf.d/my.cnf`ファイルに上書きします。
+
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/db_master/conf/my.cnf
+
+## 3.4.2 初回実行のデータインポート処理を行うファイル
+
+以下のフォルダに含まれるファイルをdbコンテナ内の`/docker-entrypoint-initdb.d`ディレクトリに配置します。
+
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/db_master/initdb
+
+### フォルダ / ファイル一覧
+
+|  フォルダ[initdb/]  |  ファイル  |  説明  |
+| ---- | ---- | ---- |
+|    |  001_setting_spider.sql  |  spiderという名前のユーザーを作成する。（db_spiderがdb_masterに接続する際に使うユーザーです。）  |
+|    |  002_master.sql  |  マスターテーブルを作成するSQL。  |
+
+
+`/docker-entrypoint-initdb.d`内のファイルは、コンテナをビルド・起動した際に、初回のみ実行されます。ファイルの実行順序は、ファイル名がアルファベット順となります。詳細は、[MariaDBのDockerHub](https://hub.docker.com/_/mariadb)の「Initializing a fresh instance」章を参照してください。
+
+## 3.5 volumesフォルダのファイル
 
 volumesフォルダには、コンテナ間で共有されるファイルが含まれています。
 
-https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/volumes/
+https://github.com/wsoluble/twibbs/tree/master/dev/spider/project/volumes/
 
 ### フォルダ / ファイル一覧
 
 |  フォルダ[volumes/]  |  ファイル  |  説明  |
 | ---- | ---- | ---- |
 |  web/app  |    |  主にwebコンテナのappディレクトリに配置される共有ファイルを入れるフォルダ。  |
-|    |  site.php  |  サイト設定の定数を定義するファイル。<br>このファイルは、web、cronコンテナ間で共有されます。  |
-|  web/app/twitteroauth  |    |  TwitterAPIを扱うためのライブラリが入っているフォルダ。<br>https://twitteroauth.com/<br>このフォルダは、web、cronコンテナ間で共有されます。  |
+|    |  site.php  |  サイト設定の定数を定義するファイル。<br>このファイルは、webコンテナで使用されます。  |
+|  web/app/twitteroauth  |    |  TwitterAPIを扱うためのライブラリが入っているフォルダ。<br>https://twitteroauth.com/<br>このフォルダは、webコンテナで使用されます。  |
 |  web/public  |    |  主にwebコンテナのpublicディレクトリに配置される共有ファイルを入れるフォルダ。  |
 |    |  sitemap.xml  |  サイトマップファイル。cronの定期処理（output_sitemap.php）によって内容が上書きされます。初期のファイル内容は空です。初期状態にする場合は、ファイルを削除せずにファイルの内容を空にしてください。（Dockerによって、sitemap.xmlというフォルダが生成されてしまうため。）<br>このファイルは、web、cronコンテナ間で共有されます。  |
 |  web/public/rss  |    |  RSSファイルを入れるフォルダ。cronの定期処理（output_rss.php）によってフォルダ内にrssファイルが生成されます。初期のフォルダの内容は空です。<br>このフォルダは、web、cronコンテナ間で共有されます。  |

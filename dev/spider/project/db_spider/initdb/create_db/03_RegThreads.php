@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/dbconnect.php');
+require_once(dirname(__FILE__) . '/lib/dbh.php');
 mb_language('Japanese');
 mb_internal_encoding('UTF-8');
 date_default_timezone_set('Asia/Tokyo');

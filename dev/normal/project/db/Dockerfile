@@ -8,6 +8,7 @@ RUN apt-get update -yqq \
         mariadb-plugin-spider \
         php \
         php-mysql \
+#        php-pdo \
         php-mbstring \
         -yqq \
     && apt-get clean \

@@ -75,7 +75,8 @@ if (!empty($thread)) {
 	$main_count = 0;
 	$tw_body = '';
 	$tw_prefix = TWEET_PREFIX;
-	$tw_suffix = ' ' . TWEET_SUFFIX . ' @' . $thread['u_twitter_id'] . "\n";
+	// リプライ付きの自動投稿はTwitterルールに違反なので削除
+	// $tw_suffix = ' ' . TWEET_SUFFIX . ' @' . $thread['u_twitter_id'] . "\n";
 	$t_url = BASE_URL . $thread['thread_id'] . ' ';
 	$t_title = htmlspecialchars_decode($thread['t_title'], ENT_QUOTES);
 	$title_count = mb_strlen($t_title);

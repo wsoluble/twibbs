@@ -14,7 +14,5 @@
 
 * * * * * root php /cron_script/output_rss.php > /var/log/cron/output_rss.log 2>&1
 * * * * * root php /cron_script/output_sitemap.php > /var/log/cron/output_sitemap.log 2>&1
-* * * * * root php /cron_script/admin/post_admin_thread.php > /var/log/cron/post_admin_thread.log 2>&1
-*/10 * * * * root php /cron_script/admin/tweet_thread.php > /var/log/cron/tweet_thread.log 2>&1
 
 # An empty line is required at the end of this file for a valid cron file.
