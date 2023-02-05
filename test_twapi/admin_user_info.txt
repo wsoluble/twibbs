@@ -1,8 +1,0 @@
-stdClass Object
-(
-    [twitter_primary_id] => 1395198975997714437
-    [twitter_id] => w_soluble_dev
-    [twitter_name] => 水溶性＠API開発用
-    [twitter_profile_image] => https://pbs.twimg.com/profile_images/1395207662808100865/9Y0mD8Ho_normal.jpg
-    [twitter_profile_banner] => https://pbs.twimg.com/profile_banners/1395198975997714437/1621477572
-)
