@@ -21,23 +21,15 @@ services:
       - type: bind
         source: ./project/db/initdb
         target: /docker-entrypoint-initdb.d
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/db/conf/my.cnf
         target: /etc/mysql/conf.d/my.cnf
-        volume:
-          nocopy: true
       - type: bind
         source: ./logs/db
         target: /var/log/mysql
-        volume:
-          nocopy: true
       - type: bind
         source: ./logs/initdb
         target: /var/log/initdb
-        volume:
-          nocopy: true
       #- type: bind
       #  source: ./project/db/data
       #  target: /var/lib/mysql
@@ -63,38 +55,24 @@ services:
       - type: bind
         source: ./project/web/public
         target: /var/www/public
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/web/app
         target: /var/www/app
-        volume:
-          nocopy: true
       - type: bind
         source: ./logs/web
         target: /var/log/apache2
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/app/twitteroauth
         target: /var/www/app/twitteroauth
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/app/site.php
         target: /var/www/app/site.php
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/public/rss
         target: /var/www/public/rss
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/public/sitemap.xml
         target: /var/www/public/sitemap.xml
-        volume:
-          nocopy: true
     depends_on:
       - db
 
@@ -115,38 +93,24 @@ services:
       - type: bind
         source: ./project/cron/cron.d/cron.txt
         target: /etc/crontab
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/cron/script
         target: /cron_script
-        volume:
-          nocopy: true
       - type: bind
         source: ./logs/cron
         target: /var/log/cron
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/public/rss
         target: /output/rss
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/public/sitemap.xml
         target: /output/sitemap.xml
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/app/twitteroauth
         target: /cron_script/lib/twitteroauth
-        volume:
-          nocopy: true
       - type: bind
         source: ./project/volumes/web/app/site.php
         target: /cron_script/lib/site.php
-        volume:
-          nocopy: true
     depends_on:
       - web
 

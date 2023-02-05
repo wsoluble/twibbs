@@ -2,7 +2,9 @@
 
 sleep 10s
 
-cd /docker-entrypoint-initdb.d/create_db
+cd $(dirname $0)
+cd create_db
+echo $(pwd)
 
 php 00_RegCategory.php > /var/log/initdb/00_RegCategory.log
 php 01_RegMainTag.php > /var/log/initdb/01_RegMainTag.log

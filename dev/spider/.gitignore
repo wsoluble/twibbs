@@ -1,0 +1,6 @@
+*.log
+*bin-log*
+/project/web/app/sessions/*
+/project/volumes/web/app/site.php
+**/web/public/rss/*
+**/web/public/sitemap.xml
