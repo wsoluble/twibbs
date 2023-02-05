@@ -8,7 +8,7 @@
 ## 1.1. TwitterAPIキー及びトークンの設定
 
 TwitterAPIのキー及びトークンをsite.phpに設定します。（この設定をしないとログインができません。）
-https://github.com/wsoluble/twibbs/blob/master/dev/normal/project/volumes/web/app/site_example.php を「site.php」に変更して、以下の定数に値を設定します。
+https://github.com/wsoluble/twibbs/blob/master/dev/normal/project/volumes/web/app/site_example.php を「site.php」の名前でコピーして、site.phpの以下の定数に値を設定します。
 
 |  定数   | 説明  |
 | ---- | ---- |
@@ -46,7 +46,7 @@ docker start cron
 remove.shを実行します。
 
 ```bash
-cd [normal版ディレクトリ]/project/
+cd [normal版ディレクトリ]
 ./remove.sh
 ```
 

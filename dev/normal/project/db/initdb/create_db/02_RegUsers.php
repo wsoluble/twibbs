@@ -9,7 +9,8 @@ function random_str($length = 8) {
 }
 
 function get_user_sample_max(&$dbh) {
-	$sql = 'SELECT user_id AS cnt FROM ' . DB_NAME_SITE . '.' . TB_USER . ' ORDER BY user_id DESC LIMIT 1;';
+	$db_name = DB_NAME;
+	$sql = "SELECT user_id AS cnt FROM `{$db_name}`.`user` ORDER BY user_id DESC LIMIT 1;";
 	try {
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();

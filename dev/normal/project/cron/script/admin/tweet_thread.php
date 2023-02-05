@@ -94,16 +94,17 @@ if (!empty($thread)) {
 	$tw_body = $tw_prefix . $t_title . $tw_suffix . $t_url;
 	echo $tw_body . PHP_EOL;
 	echo '文字数: ' . mb_strlen($tw_body) . PHP_EOL;
-	$connect = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, WEBMASTER_ACCESS_TOKEN, WEBMASTER_ACCESS_TOKEN_SECRET);
-	if (!empty($connect)) {
-		$result = $connect->post('statuses/update', array('status' => $tw_body));
-		var_dump($result);
-		// ツイート成功
-		if (!empty($result->id)) {
-			echo '投稿成功！' . PHP_EOL;
-			update_tweet_thread($dbh, $thread['thread_id']);
-		}
-	}
+	// デモなので投稿しない
+	// $connect = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, WEBMASTER_ACCESS_TOKEN, WEBMASTER_ACCESS_TOKEN_SECRET);
+	// if (!empty($connect)) {
+	// 	$result = $connect->post('statuses/update', array('status' => $tw_body));
+	// 	var_dump($result);
+	// 	// ツイート成功
+	// 	if (!empty($result->id)) {
+	// 		echo '投稿成功！' . PHP_EOL;
+	// 		update_tweet_thread($dbh, $thread['thread_id']);
+	// 	}
+	// }
 } else {
 	echo 'ツイート対象のスレッドを取得しませんでした。' . PHP_EOL;
 }

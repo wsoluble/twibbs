@@ -8,7 +8,7 @@
 ## 1.1. TwitterAPIキー及びトークンの設定
 
 TwitterAPIのキー及びトークンをsite.phpに設定します。（この設定をしないとログインができません。）
-https://github.com/wsoluble/twibbs/blob/master/dev/normal/project/volumes/web/app/site.php
+https://github.com/wsoluble/twibbs/blob/master/dev/normal/project/volumes/web/app/site_example.php を「site.php」の名前でコピーして、site.phpの以下の定数に値を設定します。
 
 |  定数   | 説明  |
 | ---- | ---- |
@@ -20,12 +20,15 @@ https://github.com/wsoluble/twibbs/blob/master/dev/normal/project/volumes/web/ap
 定数に設定するキー及びトークンは、TwitterのDeveloperPortalでAppを作成し、「Keys and tokens」タブを開き「API Key and Secret」と「Access Token and Secret」を開いて確認します。
 https://developer.twitter.com/en/portal/dashboard
 
+「User authentication settings」に設定するコールバックURLは、「`http://127.0.0.1/login/callback`」です。
+
 ## 1.2. Dockerビルド＆コンテナの起動
 
 build.shを実行します。
 
 ```bash
-cd [normal版ディレクトリ]/project/
+cd [normal版ディレクトリ]
+sudo ./setting.sh
 ./build.sh
 ```
 
@@ -43,7 +46,7 @@ docker start cron
 remove.shを実行します。
 
 ```bash
-cd [normal版ディレクトリ]/project/
+cd [normal版ディレクトリ]
 ./remove.sh
 ```
 
@@ -76,7 +79,7 @@ cd [normal版ディレクトリ]/project/
 データベースは、PHPMyAdminで管理します。
 Dockerコンテナを起動した後に、以下のURLにアクセスすることで、PHPMyAdminを利用できます。
 
-PHPMyAdmin: http://172.16.238.5/
+PHPMyAdmin: http://127.0.0.1:8081
 
 ```bash
 # PHPMyAdminログイン情報
@@ -166,23 +169,23 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/app
 |    |  database.php  |  データベースの設定ファイル。  |
 |    |  routes.php  |  URLと実行するphpファイルのルーティングを設定するファイル。.htaccessに記述するRewriteRuleのような役割。  |
 |  application/controllers  |    |  MVCモデルのCにあたるコントローラーファイルを入れるフォルダ。  |
-|    |  Errors.php  |  エラー画面を表示する。<br>http://172.16.238.4/abcxyz  |
-|    |  Help.php  |  ヘルプ画面を表示する。<br>http://172.16.238.4/help  |
-|    |  Req.php  |  ご要望画面を表示する。<br>http://172.16.238.4/req  |
-|    |  Rule.php  |  ルール画面を表示する。<br>http://172.16.238.4/rule  |
-|    |  Term.php  |  利用規約画面を表示する。<br>http://172.16.238.4/term  |
-|    |  Welcome.php  |  トップページを表示する。<br>http://172.16.238.4/  |
+|    |  Errors.php  |  エラー画面を表示する。<br>http://127.0.0.1/abcxyz  |
+|    |  Help.php  |  ヘルプ画面を表示する。<br>http://127.0.0.1/help  |
+|    |  Req.php  |  ご要望画面を表示する。<br>http://127.0.0.1/req  |
+|    |  Rule.php  |  ルール画面を表示する。<br>http://127.0.0.1/rule  |
+|    |  Term.php  |  利用規約画面を表示する。<br>http://127.0.0.1/term  |
+|    |  Welcome.php  |  トップページを表示する。<br>http://127.0.0.1/  |
 |  application/controllers/www  |    |  一般用画面のコントローラーファイルを入れるフォルダ。  |
-|    |  Entry.php  |  スレッド一覧画面を表示する。<br>http://172.16.238.4/entry<br>http://172.16.238.4/entry/chat  |
-|    |  Login.php  |  Twitterユーザーのログイン処理。<br>http://172.16.238.4/login  |
-|    |  Logout.php  |  ログアウト処理。<br>http://172.16.238.4/logout  |
-|    |  Post.php  |  スレッドの投稿画面、スパム報告の投稿画面を処理する。ログイン必須。<br>http://172.16.238.4/post/thread<br>http://172.16.238.4/post/report  |
-|    |  Prv.php  |  NGユーザー、NGワード設定画面の処理。ログイン必須。<br> http://172.16.238.4/prv/ng/user<br>http://172.16.238.4/prv/ng/word  |
-|    |  Res_report.php  |  レスのスパム報告画面を表示する。ログイン必須。<br>http://172.16.238.4/report/res/46684  |
-|    |  Tag.php  |  指定のタグのついたスレッド一覧を表示する。<br>http://172.16.238.4/tag/%E6%9C%89%E6%9C%9B  |
-|    |  Thread_report.php  |  スレッドのスパム報告画面を表示する。<br>http://172.16.238.4/report/thread/31  |
-|    |  Thread.php  |  スレッド画面を表示する。<br>http://172.16.238.4/t/31  |
-|    |  User.php  |  ユーザーが投稿したレス、スレッド、ブックマークの一覧を表示。<br>http://172.16.238.4/u/w_soluble_dev  |
+|    |  Entry.php  |  スレッド一覧画面を表示する。<br>http://127.0.0.1/entry<br>http://127.0.0.1/entry/chat  |
+|    |  Login.php  |  Twitterユーザーのログイン処理。<br>http://127.0.0.1/login  |
+|    |  Logout.php  |  ログアウト処理。<br>http://127.0.0.1/logout  |
+|    |  Post.php  |  スレッドの投稿画面、スパム報告の投稿画面を処理する。ログイン必須。<br>http://127.0.0.1/post/thread<br>http://127.0.0.1/post/report  |
+|    |  Prv.php  |  NGユーザー、NGワード設定画面の処理。ログイン必須。<br> http://127.0.0.1/prv/ng/user<br>http://127.0.0.1/prv/ng/word  |
+|    |  Res_report.php  |  レスのスパム報告画面を表示する。ログイン必須。<br>http://127.0.0.1/report/res/46684  |
+|    |  Tag.php  |  指定のタグのついたスレッド一覧を表示する。<br>http://127.0.0.1/tag/%E6%9C%89%E6%9C%9B  |
+|    |  Thread_report.php  |  スレッドのスパム報告画面を表示する。<br>http://127.0.0.1/report/thread/31  |
+|    |  Thread.php  |  スレッド画面を表示する。<br>http://127.0.0.1/t/31  |
+|    |  User.php  |  ユーザーが投稿したレス、スレッド、ブックマークの一覧を表示。<br>http://127.0.0.1/u/w_soluble_dev  |
 |  application/controllers/ajax  |    |  一般用画面のAjaxコントローラーファイルを入れるフォルダ。  |
 |    |  Res_report.php  |  レスのスパム報告を投稿する処理。ログイン必須。  |
 |    |  Res.php  |  レスを投稿・削除する処理。ログイン必須。  |
@@ -190,9 +193,9 @@ https://github.com/wsoluble/twibbs/tree/master/dev/normal/project/web/app
 |    |  Thread_report.php  |  スレッドのスパム報告を投稿する処理。ログイン必須。  |
 |    |  Thread.php  |  スレッドを投稿・削除する処理。ログイン必須。  |
 |  application/controllers/admin  |    |  管理者画面のコントローラーファイルを入れるフォルダ。管理者のみが閲覧できる領域。site.phpのADMIN_TWITTER_PRIMARY_ID定数に該当するTwitterユーザーがログインした場合のみ閲覧可能。  |
-|    |  Post.php  |  管理者スレッドの投稿画面を表示。<br>http://172.16.238.4/admin/post/thread  |
-|    |  Threads.php  |  管理者が作成したスレッドの一覧を表示。<br>http://172.16.238.4/admin/threads/get  |
-|    |  User.php  |  ユーザーが投稿したスレッド・レスへのスパム報告一覧を表示。<br>http://172.16.238.4/admin/u/w_soluble_dev/report_res<br>http://172.16.238.4/admin/u/w_soluble_dev/report_thread  |
+|    |  Post.php  |  管理者スレッドの投稿画面を表示。<br>http://127.0.0.1/admin/post/thread  |
+|    |  Threads.php  |  管理者が作成したスレッドの一覧を表示。<br>http://127.0.0.1/admin/threads/get  |
+|    |  User.php  |  ユーザーが投稿したスレッド・レスへのスパム報告一覧を表示。<br>http://127.0.0.1/admin/u/w_soluble_dev/report_res<br>http://127.0.0.1/admin/u/w_soluble_dev/report_thread  |
 |  application/views  |    |  MVCモデルのVにあたるビューファイルを入れるフォルダ。<br>画面の部品を組み立てる処理。  |
 |  application/models  |    |  MVCモデルのMにあたるモデルファイルを入れるフォルダ。<br>データベースからデータを取得する処理。  |
 |  application/libraries  |    |  自らが作成した共通処理を入れるディレクトリ。  |
